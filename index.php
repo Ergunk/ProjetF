@@ -40,6 +40,8 @@
 		<link rel="stylesheet" type="text/css" href="css/slider.css">
 		
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+		<script type="text/javascript" src="function.js"></script>
+		
 		
 
 </head>
@@ -48,6 +50,17 @@
 
 	<div id="wrapper_header">
 		<div id="header" class="inner">
+			<div id="login">
+				<div >
+					<ul>
+						<li>Login</li>
+					</ul>
+				</div>
+				
+				<div id="info_user" ></div>
+				
+			</div>
+		
 			<ul class="nav" >
 				<li><a href="?page=accueil">Accueil</a></li>
 				<li><a href="?page=evenements">Evenements</a></li>

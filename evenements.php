@@ -1,25 +1,6 @@
-<script type="text/javascript"> 
-            jQuery(function($){
-               $('.month').hide();
-               $('.month:first').show();
-               $('.months a:first').addClass('active');
-               var current = 1;
-               $('.months a').click(function(){
-                    var month = $(this).attr('id').replace('linkMonth','');
-                    if(month != current){
-                        $('#month'+current).slideUp();
-                        $('#month'+month).slideDown();
-                        $('.months a').removeClass('active'); 
-                        $('.months a#linkMonth'+month).addClass('active'); 
-                        current = month;
-                    }
-                    return false; 
-               });
-            });
-        </script>
-
 
 <?php
+	
 	require('config.php');
 	require('date.php');
 	$date = new Date();
@@ -27,8 +8,6 @@
 	$events = $date->getEvents($year);
 	$dates = $date->getAll($year);
 	
-
-
 ?>
 
 <div class="periods">
@@ -70,12 +49,12 @@
 							<td colspan="<?php echo $w-1; ?>" class="padding"></td>
 						<?php endif; ?>
 						
-						<td <?php if($time == strtotime(date('Y-m-d'))){ echo 'class="today"'; } ?>>
+						<td class="block <?php if($time == strtotime(date('Y-m-d'))){ echo 'today'; } ?>">
 						
 							<div class="relative">
 								<div class="day"><?php echo $d; ?></div>
 							</div>
-							<div class="daytitle">
+							<div class="daytitle" style="display:none">
 								<?php echo $date->days[$w-1]; ?> <?php echo $d; ?> <?php echo $date->months[$m-1]; ?>
 							</div>
 							<ul class="events">
