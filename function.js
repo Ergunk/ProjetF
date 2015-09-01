@@ -52,6 +52,18 @@ $(function(){
 		
 		
 	});
+	
+	
+	$('.event').click(function() {
+		
+	
+		
+		$(this).find('.description').toggleClass('active');
+		
+	
+			
+	});
+	
 });
 
 
