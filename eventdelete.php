@@ -10,6 +10,4 @@ if (isset($_POST['id'])) {
 else {
 	echo 'Pas d\'ID';
 }
-
-
 ?>
