@@ -32,6 +32,7 @@
 			$pass_hache = sha1('gz'.$_POST['pass']);
 
 			$req = $db->prepare('SELECT id FROM tblmembres WHERE pseudo=:pseudo AND pass=:pass');
+
 			$req->execute(array(
 				'pseudo' => $pseudo,
 				'pass' => $pass_hache));
@@ -63,6 +64,7 @@
 			$pass_hache = sha1('gz'.$_POST['pass']);
 			$email = $_POST['email'];
 			
+
 				
 			
 			$res = $db->query("SELECT pseudo FROM tblmembres WHERE pseudo='".$pseudo."'");
@@ -78,12 +80,8 @@
 			}else{
 			   // Pseudo libre
 			  	$req = $db->prepare('INSERT INTO tblmembres(pseudo, pass, email, date_inscription) VALUES(:pseudo, :pass, :email, CURDATE())');
-				$req->execute(array(
-				'pseudo' => $pseudo,
-				'pass' => $pass_hache,
-				'email' => $email));
-			}
 
+			}
 			
 		}
 		

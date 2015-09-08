@@ -101,7 +101,7 @@ $(function(){
 		
 		
 	});
-	
+
 	
 	$('.event').click(function() {
 		
@@ -113,9 +113,8 @@ $(function(){
 			
 	});
 	
-	
-	
 });
+
 
 
 

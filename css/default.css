@@ -193,6 +193,7 @@ table td .day{  position:absolute;  color:#8C8C8C;  bottom:-40px;  right:5px;  f
 .addevent.active{ display:block !important; height:auto; position:absolute;  left:580px;  top:65px; width:442px;  list-style:none;  margin:0px;  padding:11px 0px 0px;}
 
 table td .events {  position:relative;  width:79px;  height:0px;  margin:-39px 0px 0px;  padding:0px;}
+
 table td .events li{ list-style-type :none; width:10px;  height:10px;  float:left;  background:#6ec7f5;  /*+border-radius:10px;*/  -moz-border-radius:10px;  -webkit-border-radius:10px;  -khtml-border-radius:10px;  border-radius:10px 10px 10px 10px;  margin-left:6px;  text-indent:-3000px;}
 table td .events.active { height:auto; position:absolute;  left:575px;  top:235px;  width:442px;  list-style:none;  margin:0px;  padding:11px 0px 0px;}
 table td .events.active li {  padding : 10px 0px; height:100%;  font-weight:bold;  border-bottom:1px solid #6ec7f5;  padding-left:15px;  text-indent:0;  background:none;  width:300px;}

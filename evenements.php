@@ -96,9 +96,6 @@
 											
 											echo '<p class="description"  >'.$event[2].'</p>';
 
-
-											
-											
 											?>
 										</li>
 									<?php endforeach; endif;?>
