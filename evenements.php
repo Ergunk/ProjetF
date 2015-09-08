@@ -74,6 +74,7 @@
 									<div class="control-groupe">
 										<textarea name="desc" placeholder="Description" ></textarea>
 									</div>	
+
 										<input type="hidden" name="date" value="<?php echo $year.'/'.$m.'/'.$d; ?>" />
 										
 										<input type="hidden" name="action" value="addevent" />
@@ -90,12 +91,23 @@
 
 											$event = explode('.-.',$e);	
 											
-											echo '<button class="delete" onclick="DeleteEvent('.$event[0].')">X</button>';
+											if($_SESSION["user"] == $event[3]) {
+											
+												echo '<button class="delete" onclick="DeleteEvent('.$event[0].',\''.$_SESSION['user'].'\')">x</button>';
+											}
+											
+											echo '<a href="?page=description&amp;id='.$event[0].'"><button class="more">+</button></a>';
 											
 											echo '<h3>'.$event[1].'</h3>';
 											
-											echo '<p class="description"  >'.$event[2].'</p>';
-
+											echo '<div class="description"  >';
+											
+											echo '<p>'.$event[2].'</p>';
+											
+											echo '<p> Par '.$event[3].'</p>';
+											
+											echo '</div>';
+					
 											?>
 										</li>
 									<?php endforeach; endif;?>

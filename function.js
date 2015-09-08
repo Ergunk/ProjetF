@@ -32,11 +32,11 @@ function Inscription() {
 	
 }
 
-function DeleteEvent(idEvent) {
+function DeleteEvent(idEvent , pseudo) {
 		$.ajax({
 			type: 'POST',
 			url: "eventdelete.php",
-			data: { id: idEvent },
+			data: { id: idEvent , user : pseudo },
 			success : function(data) {
 				
 				window.location.href = window.location.href;

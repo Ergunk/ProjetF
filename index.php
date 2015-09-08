@@ -18,11 +18,13 @@
 			$date = $_POST['date'];
 			$desc = $_POST['desc'];
 			
-			$req = $db->prepare('INSERT INTO tblevenements(title,date,description) VALUES(:title , :date , :description)');
+			
+			$req = $db->prepare('INSERT INTO tblevenements(title,date,description,createby) VALUES(:title , :date , :description, :pseudo)');
 			$req->execute(array(
 			'title' => $titre,
 			'date' => $date,
-			'description' => $desc));
+			'description' => $desc,
+			'pseudo' => $_SESSION['user']));
 
 		}
 		
@@ -37,6 +39,7 @@
 				'pseudo' => $pseudo,
 				'pass' => $pass_hache));
 
+				
 			$resultat = $req->fetch();
 
 			if (!$resultat)
@@ -80,6 +83,10 @@
 			}else{
 			   // Pseudo libre
 			  	$req = $db->prepare('INSERT INTO tblmembres(pseudo, pass, email, date_inscription) VALUES(:pseudo, :pass, :email, CURDATE())');
+				$req->execute(array(
+					'pseudo' => $pseudo,
+					'pass' => $pass_hache,
+					'email' => $email));
 
 			}
 			
@@ -89,13 +96,11 @@
 	
 	
 	
-	
-	
-	
 	$tblPage = array(
 	
 		'accueil' => 'accueil.php',
 		'evenements' => 'evenements.php',
+		'description' => 'description.php',
 		'mini-jeux' => 'mini-jeux.php'
 	);
 			
@@ -212,16 +217,14 @@
 			?>
 				<div id="info_user" >
 				
-					<p  style="display:inline-block" > <?php echo 'Bonjour ' . $_SESSION['user']; ?> </p>
+					<p  style="vertical-align: top;display:inline-block" > <?php echo 'Bonjour ' . $_SESSION['user']; ?> </p>
 					
 					<form method="POST" action=""  style="display:inline-block">
 					
 						<input type="hidden" name="action" value="logout" />
 					
-						<div class="control-groupe">
-	
-							<input type="submit" class="login-field" value="logout" />
-						</div>
+						<input  type="submit" class="login-field" value="logout" />
+						
 					
 					</form>
 					

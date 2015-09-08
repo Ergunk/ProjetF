@@ -21,7 +21,7 @@
 		
 		</ul>
 		<div class='cs_description'>
-			<label class='num0'>
+			<!-- <label class='num0'>
 				<span class="cs_title"><span class="cs_wrapper">Buns</span></span>
 			</label>
 			<label class='num1'>
@@ -29,7 +29,7 @@
 			</label>
 			<label class='num2'>
 				<span class="cs_title"><span class="cs_wrapper">Lemon pie</span></span>
-			</label>
+			</label>-->
 		</div>
 		
 		<div class='cs_arrowprev'>
