@@ -1,7 +1,5 @@
 <?php
-
-	
-
+	session_start();
 	require('config.php');
 	
 	global $db;
@@ -10,34 +8,30 @@
 	if(isset($_POST["action"])) {
 		
 		if($_POST['action'] == "logout" ) {
-			
 			session_destroy();
+			header("location:index.php");
 		}
 		
 		if($_POST['action'] == "addevent" ) {
 			
 			$titre = $_POST['title'];
 			$date = $_POST['date'];
+			$desc = $_POST['desc'];
 			
-		
-			
-			$req = $db->prepare('INSERT INTO tblevenements(title,date) VALUES(:title , :date)');
+			$req = $db->prepare('INSERT INTO tblevenements(title,date,description) VALUES(:title , :date , :description)');
 			$req->execute(array(
 			'title' => $titre,
-			'date' => $date));
-
-
+			'date' => $date,
+			'description' => $desc));
 
 		}
 		
 		if($_POST['action'] == 'login' ) {
 			
 			$pseudo = $_POST['user'];
-			// Hachage du mot de passe
 			$pass_hache = sha1('gz'.$_POST['pass']);
 
-			// Vérification des identifiants
-			$req = $db->prepare('SELECT id FROM tblmembres WHERE pseudo = :pseudo AND pass = :pass');
+			$req = $db->prepare('SELECT id FROM tblmembres WHERE pseudo=:pseudo AND pass=:pass');
 			$req->execute(array(
 				'pseudo' => $pseudo,
 				'pass' => $pass_hache));
@@ -50,7 +44,9 @@
 			}
 			else
 			{
-				session_start();
+				
+
+				
 				$_SESSION['id'] = $resultat['id'];
 				$_SESSION['user'] = $pseudo;
 			
@@ -61,17 +57,33 @@
 		
 		if($_POST['action'] == 'inscription' ) {
 			
+			
+			
 			$pseudo = $_POST['user'];
 			$pass_hache = sha1('gz'.$_POST['pass']);
 			$email = $_POST['email'];
 			
+				
+			
+			$res = $db->query("SELECT pseudo FROM tblmembres WHERE pseudo='".$pseudo."'");
+			
+			$res->setFetchMode(PDO::FETCH_OBJ);
+			
+			
+			
+			if($test = $res->fetch() ){
+			   // Pseudo déjà utilisé
+			   echo 'Ce pseudo est déjà utilisé';
+			  
+			}else{
+			   // Pseudo libre
+			  	$req = $db->prepare('INSERT INTO tblmembres(pseudo, pass, email, date_inscription) VALUES(:pseudo, :pass, :email, CURDATE())');
+				$req->execute(array(
+				'pseudo' => $pseudo,
+				'pass' => $pass_hache,
+				'email' => $email));
+			}
 
-			$req = $db->prepare('INSERT INTO tblmembres(pseudo, pass, email, date_inscription) VALUES(:pseudo, :pass, :email, CURDATE())');
-			$req->execute(array(
-			'pseudo' => $pseudo,
-			'pass' => $pass_hache,
-			'email' => $email));
-		
 			
 		}
 		
@@ -153,9 +165,9 @@
 		<input type="password" class="login-field" name="pass" placeholder="password" />
 	</div>
 	
-	<div class="control-groupe">
+	
 		<input type="hidden" name="action" value="login"/>
-	</div>
+
 
 	<div class="control-groupe">
 	
@@ -183,9 +195,9 @@
 		<input type="email" class="login-field" name="email" placeholder="email" />
 	</div>
 	
-	<div class="control-groupe">
+
 		<input type="hidden" name="action" value="inscription"/>
-	</div>
+
 
 	<div class="control-groupe">
 	
@@ -197,7 +209,7 @@
 				</div>
 				
 				
-			<?php
+			<?php 
 				} else {
 			?>
 				<div id="info_user" >

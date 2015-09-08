@@ -1,3 +1,52 @@
+function Login() {
+	
+		var form = document.getElementById('login_form');
+	
+		var current = form.style.display;
+		
+		if(current == "none") {
+			
+			form.style.display = "block";
+			
+		} else {
+			
+			form.style.display = "none";	
+		}
+	
+}
+
+function Inscription() {
+	
+		var form = document.getElementById('inscription_form');
+	
+		var current = form.style.display;
+		
+		if(current == "none") {
+			
+			form.style.display = "block";
+			
+		} else {
+			
+			form.style.display = "none";	
+		}
+	
+}
+
+function DeleteEvent(idEvent) {
+		$.ajax({
+			type: 'POST',
+			url: "eventdelete.php",
+			data: { id: idEvent },
+			success : function(data) {
+				
+				window.location.href = window.location.href;
+			}
+		});
+}
+
+
+
+
 $(function(){
 	
 	
@@ -52,41 +101,22 @@ $(function(){
 		
 		
 	});
+	
+	
+	$('.event').click(function() {
+		
+	
+		
+		$(this).find('.description').toggleClass('active');
+		
+	
+			
+	});
+	
+	
+	
 });
 
 
 
 
-function Login() {
-	
-		var form = document.getElementById('login_form');
-	
-		var current = form.style.display;
-		
-		if(current == "none") {
-			
-			form.style.display = "block";
-			
-		} else {
-			
-			form.style.display = "none";	
-		}
-	
-}
-
-function Inscription() {
-	
-		var form = document.getElementById('inscription_form');
-	
-		var current = form.style.display;
-		
-		if(current == "none") {
-			
-			form.style.display = "block";
-			
-		} else {
-			
-			form.style.display = "none";	
-		}
-	
-}

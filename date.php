@@ -8,13 +8,13 @@ class Date{
 	function getEvents($year){
 		global $db;
 		
-		$req = $db->query('SELECT id,title,date FROM tblevenements WHERE YEAR(date)='.$year);
+		$req = $db->query('SELECT id,title,date,description FROM tblevenements WHERE YEAR(date)='.$year);
 		$r = array();
 		
 		while ($d = $req->fetch(PDO::FETCH_OBJ)) {
 			
-			$r[strtotime($d->date)][$d->id] = $d->title;
-
+			$r[strtotime($d->date)][$d->id] = $d->id.'.-.'.$d->title.'.-.'.$d->description;
+			
 			
 		}
 		
