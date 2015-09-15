@@ -46,7 +46,7 @@ function DeleteEvent(idEvent , pseudo) {
 			data: { action: "DeleteEvent" , id: idEvent , user : pseudo },
 			success : function(data) {
 				
-				window.location.href = window.location.href;
+				location.reload();
 			}
 		});
 }
@@ -60,7 +60,7 @@ function AddParticipant(idEvent , idUser) {
 			data: { action: "AddParticipant" , id: idEvent , user : idUser },
 			success : function(data) {
 				
-				window.location.href = window.location.href;
+				location.reload();
 			}
 		});
 }

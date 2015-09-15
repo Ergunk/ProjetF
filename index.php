@@ -219,7 +219,7 @@
 				
 					<p  style="vertical-align: top;display:inline-block" > <?php echo 'Bonjour ' . $_SESSION['user']; ?> </p>
 					
-					<form method="POST" action=""  style="display:inline-block">
+					<form id="logout" method="POST" action=""  style="display:inline-block">
 					
 						<input type="hidden" name="action" value="logout" />
 					

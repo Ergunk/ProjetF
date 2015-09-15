@@ -10,13 +10,13 @@
 				<img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Bangkok_skytrain_sunset.jpg" style="width: 100%;">
 			</div>
 			<li class='num0 img'>
-				 <a href="#" target=""><img src='https://upload.wikimedia.org/wikipedia/commons/4/49/Bangkok_Skyline_7.jpg' alt='Buns' title='Buns' /> </a> 
+				 <a href="#" target=""><img src='images/bangkok.jpg' alt='Bangkok' title='Bangkok' /> </a> 
 			</li>
 			<li class='num1 img'>
-				 <a href="#" target=""><img src='https://upload.wikimedia.org/wikipedia/commons/4/49/Bangkok_Skyline_7.jpg' alt='Croissant' title='Croissant' /> </a> 
+				 <a href="#" target=""><img src='images/bangkok.jpg' alt='Bangkok' title='Bangkok' /> </a> 
 			</li>
 			<li class='num2 img'>
-				 <a href="#" target=""><img src='https://upload.wikimedia.org/wikipedia/commons/4/49/Bangkok_Skyline_7.jpg' alt='Lemon pie' title='Lemon pie' /> </a> 
+				 <a href="#" target=""><img src='images/bangkok.jpg' alt='Bangkok' title='Bangkok' /> </a> 
 			</li>
 		
 		</ul>
