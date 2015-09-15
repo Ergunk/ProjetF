@@ -24,8 +24,9 @@ CREATE TABLE IF NOT EXISTS `tblmembres` (
 
 
 CREATE TABLE IF NOT EXISTS `tblparticipants` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `idevent`int(11) NOT NULL,
-    `pseudo` varchar(255) NOT NULL,
-    PRIMARY KEY(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idevent` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `Unique` (`idevent`,`iduser`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;

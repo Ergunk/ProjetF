@@ -1,5 +1,8 @@
 function Login() {
-	
+		
+		document.getElementById('menu').classList.remove("active");
+		document.getElementById('inscription_form').style.display = "none";	
+		
 		var form = document.getElementById('login_form');
 	
 		var current = form.style.display;
@@ -16,7 +19,11 @@ function Login() {
 }
 
 function Inscription() {
-	
+		
+		document.getElementById('menu').classList.remove("active");
+		
+		document.getElementById('login_form').style.display = "none";	
+		
 		var form = document.getElementById('inscription_form');
 	
 		var current = form.style.display;
@@ -35,8 +42,22 @@ function Inscription() {
 function DeleteEvent(idEvent , pseudo) {
 		$.ajax({
 			type: 'POST',
-			url: "eventdelete.php",
-			data: { id: idEvent , user : pseudo },
+			url: "function.php",
+			data: { action: "DeleteEvent" , id: idEvent , user : pseudo },
+			success : function(data) {
+				
+				window.location.href = window.location.href;
+			}
+		});
+}
+
+
+function AddParticipant(idEvent , idUser) {
+		
+		$.ajax({
+			type: 'POST',
+			url: "function.php",
+			data: { action: "AddParticipant" , id: idEvent , user : idUser },
 			success : function(data) {
 				
 				window.location.href = window.location.href;
@@ -113,8 +134,29 @@ $(function(){
 			
 	});
 	
-});
+	
+	
+	$('#toggle').click(function() {
+		
+		var menu = $('#menu');
+		menu.toggleClass('active');
+		
+		var formLog = $('#login_form');
+		var formInc = $('#inscription_form');
+		
+		formLog.css('display', 'none');
+		formInc.css('display', 'none');
+	});
+	
+	
+	
 
+
+
+		
+
+
+});
 
 
 

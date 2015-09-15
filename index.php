@@ -137,7 +137,7 @@
 		<link rel="stylesheet" type="text/css" href="css/slider.css">
 		
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-		<script type="text/javascript" src="function.js"></script>
+		<script type="text/javascript" src="js/function.js"></script>
 		
 		
 
@@ -158,7 +158,9 @@
 				<div >
 					<ul>
 						<li onClick="Login();" >Login</li>
+						<li onClick="Inscription();" >Inscription</li>
 						<form method="POST" action="" id="login_form" style="display : none">
+						
 
 	<div class="control-groupe">
 		<input type="text" class="login-field" name="user" placeholder="username" />
@@ -178,11 +180,6 @@
 	</div>
 
 </form>
-					</ul>
-					
-					
-					<ul>
-						<li onClick="Inscription();" >Inscription</li>
 						<form method="POST" action="" id="inscription_form" style="display : none">
 
 	<div class="control-groupe">
@@ -208,7 +205,10 @@
 	</div>
 
 </form>
+					
+					
 					</ul>
+
 				</div>
 				
 				
@@ -237,11 +237,17 @@
 				
 			</div>
 		
-			<ul class="nav" >
+			<div id="toggle"><span></span></div>
+			
+			<div id="menu" >
+			<ul  >
 				<li><a href="?page=accueil">Accueil</a></li>
 				<li><a href="?page=evenements">Evenements</a></li>
 				<li><a href="?page=mini-jeux">Mini-jeux</a></li>
 			</ul>
+			
+			</div> 
+			
 		</div>
 	</div>
 	
@@ -268,7 +274,6 @@
 		</div>
    
    </div>
-   
    
    <div id="wrapper_footer">
 		<div id="footer" class="inner">

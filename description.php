@@ -3,9 +3,9 @@
 
 if(isset($_GET['id'])) {
 	
-	$id = $_GET['id'];
+	$idEvent = $_GET['id'];
 	
-	$res = $db->query('SELECT id,title,date,description,createby FROM tblevenements WHERE id='.$id);
+	$res = $db->query('SELECT id,title,date,description,createby FROM tblevenements WHERE id='.$idEvent);
 		
 	$res->setFetchMode(PDO::FETCH_OBJ);	
 		
@@ -19,17 +19,31 @@ if(isset($_GET['id'])) {
 	
 	echo '<h2>Participant</h2>';
 
-	$res = $db->query('SELECT id,idevent,pseudo FROM tblparticipants WHERE idevent='.$id);
+	$res = $db->query('SELECT id,idevent,iduser FROM tblparticipants WHERE idevent='.$idEvent);
 		
 	$res->setFetchMode(PDO::FETCH_OBJ);	
 	
 	
-	while ($participants = $res->fetch()) {
+	while ($idparticipants = $res->fetch()) {
 		
-		echo '<p>'.$participants->pseudo.'<p>';
+	
+		$id = $idparticipants->iduser;
+		
+		$resultat = $db->query('SELECT id,pseudo FROM tblmembres WHERE id='.$id);
+	
+		$resultat->setFetchMode(PDO::FETCH_OBJ);	
+		$participants = $resultat->fetch();
+		echo '<p>'.$participants->pseudo.'</p>';
+		
 		
 	}
 	
+	
+	
+	echo '<button class="btn" onClick="AddParticipant('.$idEvent.','.$_SESSION['id'].')">Participer</button>';
+} else {
+	
+	echo 'Pas d\'événement';
 	
 }
 
