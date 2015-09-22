@@ -18,10 +18,17 @@ a {
 }
 
 body {
+	background: #F6F6F6 none repeat scroll 0% 0%;
 	height:100%;
 	width:100%;
 	margin : 0px;
 	padding-top : 50px;
+}
+
+#wrapper_contenu {
+	margin : 0px;
+	padding : 25px;
+	background: white;
 }
 
 #login {
@@ -135,11 +142,11 @@ input[type="submit"] , .btn{
 }
 
 #wrapper_footer {
-	
-	
+	font-size : 25px;
+	font-weight : bold;
 	bottom : 0px;
 	width : 100%;
-	height : 50px;
+	height : 150px;
 	
 }
 
@@ -150,7 +157,7 @@ input[type="submit"] , .btn{
 .col_50 {
 
 	float : left;
-	width : 48%;
+	width : 49%;
 	height : 100%;
 }
 

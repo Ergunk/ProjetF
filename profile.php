@@ -191,11 +191,10 @@ if($_POST['action'] == "UploadImage"){
 		?>
 		
 		<div id="profile">
-		
-
 			
 				<?php
 				while ($user = $res->fetch()) {
+					
 					
 					echo '<div>';
 					

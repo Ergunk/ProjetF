@@ -298,7 +298,7 @@
 		<div id="footer" class="inner">
 				
 			<div class="col_50">
-
+				<p>test</p>
 			</div>
 			
 			<div class="col_50">
