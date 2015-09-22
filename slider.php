@@ -7,7 +7,7 @@
 		<input name="cs_anchor1" id='cs_pause1' type="radio" class='cs_anchor' >
 		<ul>
 			<div style="width: 100%; visibility: hidden; font-size: 0px; line-height: 0;">
-				<img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Bangkok_skytrain_sunset.jpg" style="width: 100%;">
+				<img src="images/bangkok.jpg" style="width: 100%;">
 			</div>
 			<li class='num0 img'>
 				 <a href="#" target=""><img src='images/bangkok.jpg' alt='Bangkok' title='Bangkok' /> </a> 

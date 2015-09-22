@@ -9,7 +9,7 @@ html {
 color: #888;
 line-height: 1.5;
 font-size: 14px;
-font-weight: 300;
+
 font-style: normal;
 }
 
@@ -28,6 +28,7 @@ body {
 
 	float : left;
 	max-height: 100%;
+	max-width : 70%;
 }
 
 
@@ -88,12 +89,38 @@ input[type="submit"] , .btn{
 	padding-left : 10px;
 }
 
-#login ul li {
+#login ul li , #info ul li{
 	display: inline-block;
 	cursor : pointer;
 	color : white;
 	background-color : #6ec7f5 ;
 	
+	padding : 5px 10px;
+}
+
+#info {
+
+	display : inline-block;
+}
+
+#info ul{
+	margin-top : 0px;
+	
+}
+
+#info ul li , #info form input{
+	border-radius : initial;
+	border-bottom-left-radius : 25%;
+	border-bottom-right-radius : 25%;
+}
+
+#info ul li a {
+
+	color : white;
+	text-decoration : none;
+}
+
+#logout input {
 	padding : 5px 10px;
 }
 
@@ -250,6 +277,7 @@ table td .daytitle{  display:none; position:absolute;  left:482px;  top:21px;  w
   height: 30px;
   margin: 25px auto 10px;
   margin-right : 5px;
+  cursor : pointer;
 }
 
 #toggle span:after,
@@ -291,7 +319,47 @@ table td .daytitle{  display:none; position:absolute;  left:482px;  top:21px;  w
 	margin-left : 10px;
 }	
 
+#profile {
+	width : 80%;
+	margin : auto;
+	display : table;
+	margin-top : 50px;
+}
+
+#profile div {
+	display : table-cell;
+	padding : 0px 15px;
+	vertical-align: top;
 	
+}
+
+#profile  div:nth-of-type(1){
+	width : 30%;
+}
+
+#profile  div:nth-of-type(2){
+	width : 70%;
+}
+
+#profile div img {
+	height: 100px;
+width: 100px;
+	border-radius : 50%;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	cursor : pointer;
+}
+
+#profile_image {
+	margin : 25px;
+
+}
+
+#background , #modalWindow{
+
+	display : none;
+}
 	
 @media screen and (max-width: 1000px) {
 	.inner {
@@ -334,7 +402,23 @@ table td .daytitle{  display:none; position:absolute;  left:482px;  top:21px;  w
 
 
 @media screen and (max-width: 800px) {
-
+	#login {
+	
+		max-width:100%;
+	}
+	
+	
+	#profile {
+	
+		width : 100%;
+	}
+	
+	#profile div {
+	
+		display : block;
+		width : 100% !important;
+	}
+	
 		.months ul li {
 		display : inline-block;
 		width : 32%;

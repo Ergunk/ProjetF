@@ -101,7 +101,8 @@
 		'accueil' => 'accueil.php',
 		'evenements' => 'evenements.php',
 		'description' => 'description.php',
-		'mini-jeux' => 'mini-jeux.php'
+		'mini-jeux' => 'mini-jeux.php',
+		'profile' => 'profile.php'
 	);
 			
 	if(isset($_GET['page'])) {
@@ -135,9 +136,12 @@
         <meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="css/default.css">
 		<link rel="stylesheet" type="text/css" href="css/slider.css">
+		<link rel="stylesheet" type="text/css" href="css/modalWindow.css">
+		
 		
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/function.js"></script>
+		<script type="text/javascript" src="js/modalWindow.js"></script> <!-- Chargement du script local -->
 		
 		
 
@@ -219,7 +223,14 @@
 				
 					<p  style="vertical-align: top;display:inline-block" > <?php echo 'Bonjour ' . $_SESSION['user']; ?> </p>
 					
-					<form id="logout" method="POST" action=""  style="display:inline-block">
+					
+					<div id="info">
+					<ul >
+					
+						<li><a href="?page=profile&id=<?php echo $_SESSION['id']; ?>">Profile</a></li>
+					</ul>
+					
+						<form id="logout" method="POST" action=""  style="display:inline-block" >
 					
 						<input type="hidden" name="action" value="logout" />
 					
@@ -228,6 +239,11 @@
 					
 					</form>
 					
+					</div>
+					
+					
+				
+				
 				</div>
 				
 			<?php
@@ -243,7 +259,7 @@
 			<ul  >
 				<li><a href="?page=accueil">Accueil</a></li>
 				<li><a href="?page=evenements">Evenements</a></li>
-				<li><a href="?page=mini-jeux">Mini-jeux</a></li>
+				<!--<li><a href="?page=mini-jeux">Mini-jeux</a></li>-->
 			</ul>
 			
 			</div> 
