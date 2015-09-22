@@ -7,6 +7,9 @@
 	
 	if(isset($_POST["action"])) {
 		
+
+
+
 		if($_POST['action'] == "logout" ) {
 			session_destroy();
 			header("location:index.php");
@@ -221,7 +224,7 @@
 			?>
 				<div id="info_user" >
 				
-					<p  style="vertical-align: top;display:inline-block" > <?php echo 'Bonjour ' . $_SESSION['user']; ?> </p>
+					<p  id="bonjour" style="vertical-align: top;display:inline-block" > <?php echo 'Bonjour ' . $_SESSION['user']; ?> </p>
 					
 					
 					<div id="info">

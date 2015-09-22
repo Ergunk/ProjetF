@@ -1,3 +1,14 @@
+<script type="text/javascript">
+ 
+	function refresh(user) {
+	
+		var block = document.getElementById("bonjour");
+		
+		block.innerHTML = "Bonjour "+user;
+					 
+	}
+</script>	
+
 <?php
 
 require_once("config.php");
@@ -7,6 +18,55 @@ if(isset($_GET['id'])) {
 	$idUser = $_GET['id'];
 
 if(isset($_POST['action'])){
+
+if($_POST['action'] == "UpdateProfile"){
+			
+		
+		if($_POST["pseudo"] != "" && $_POST['email']!= ""){
+			
+			
+			if($_SESSION["user"] != $_POST["pseudo"]) {
+				$res = $db->query("SELECT pseudo FROM tblmembres WHERE pseudo='".$_POST['pseudo']."'");
+				$res->setFetchMode(PDO::FETCH_OBJ);
+				
+				if($test = $res->fetch() ){
+				// Pseudo déjà utilisé
+					$erreur = 'Ce pseudo est déjà utilisé';
+					
+					$update = false;
+					
+				} else {
+					$update = true;
+				}
+			} else {
+				
+				$update = true;
+			}
+	
+			if($update == true){
+				
+				
+				$message = 'Upload réussi !';
+				$req = $db->prepare('UPDATE tblmembres SET pseudo=:pseudo, email=:email  WHERE id='.$_SESSION['id']);
+				$req->execute(array(
+				'pseudo' => $_POST['pseudo'],
+				'email' =>  $_POST['email']));
+			
+				$_SESSION['user'] = $_POST['pseudo'];
+			
+		
+				echo "<script>refresh('".$_SESSION['user']."');</script>";
+				
+		
+			}
+		} else {
+			
+			 $erreur = 'Veuillez remplir les champs';
+		}
+			
+	
+}
+
 
 if($_POST['action'] == "UploadImage"){
 		
@@ -58,9 +118,9 @@ if($_POST['action'] == "UploadImage"){
 					// Si c'est OK, on teste l'upload
 					if(move_uploaded_file($_FILES['image']['tmp_name'], TARGET.$nomImage))
 					{
-					  $message = 'Upload réussi !';
+					  $message = 'Update réussi !';
 					  
-					  $req = $db->prepare('UPDATE tblmembres SET image=:image WHERE id='.$idUser);
+					  $req = $db->prepare('UPDATE tblmembres SET image=:image WHERE id='.$_SESSION['id']);
 					  $req->execute(array(
 						'image' => $nomImage));
 					  
@@ -68,7 +128,7 @@ if($_POST['action'] == "UploadImage"){
 					else
 					{
 					  // Sinon on affiche une erreur systeme
-					  $erreur = 'Problème lors de l\'upload !';
+					  $erreur = 'Problème lors de l\'update !';
 					}
 				  }
 				  else
@@ -107,11 +167,15 @@ if($_POST['action'] == "UploadImage"){
 
 }
 
-
+	if($idUser != "") {
 	
 	$res = $db->query('SELECT id,pseudo,email,date_inscription FROM tblmembres WHERE id='.$idUser);
 	
 	$resultat = $res->fetch();
+	
+	} else {
+		$resultat = false;
+	}
 	
 	if(!$resultat) {
 		echo '<h1>Pas de profile</h1>';
@@ -135,6 +199,7 @@ if($_POST['action'] == "UploadImage"){
 					
 					echo '<div>';
 					
+					if($_SESSION['id'] == $idUser) {
 						if($user->image == null) {
 							
 							echo '<img id="run" src="images/bangkok.jpg" alt="Bangkok" title="Bangkok" />';
@@ -143,12 +208,42 @@ if($_POST['action'] == "UploadImage"){
 							
 							echo '<img id="run" src="images/profiles/'.$user->image.'" alt="'.$user->image.'" title="'.$user->image.'" />';
 						}
+						
+					} else {
+						if($user->image == null) {
+							
+							echo '<img src="images/bangkok.jpg" alt="Bangkok" title="Bangkok" />';
+							
+						} else {
+							
+							echo '<img src="images/profiles/'.$user->image.'" alt="'.$user->image.'" title="'.$user->image.'" />';
+						}
+						
+					}
 					
 					echo '</div>';
 					
 					echo '<div>';
-					echo '<p><b>'.$user->pseudo.'</b></p>';
-					echo '<p>'.$user->email.'</p>';	
+					
+					
+					if($_SESSION['id'] == $idUser) {
+					
+					echo '<form method="POST" action="" class="form_profile">';
+					
+						echo '<input type="text" name="pseudo" value="'.$user->pseudo.'" />';
+					
+						echo '<input type="text" name="email" value="'.$user->email.'" />';
+						
+						echo '<input type="hidden" name="action" value="UpdateProfile" />';
+						
+						echo '<input type="submit" value="Update"/>';
+						
+					echo '</form>';	
+					
+					} else {
+						echo '<p><b>'.$user->pseudo.'</b></p>';
+						echo '<p>'.$user->email.'</p>';
+					}
 					echo '<p> Date d\'inscription : '.$user->date_inscription.'</p>';
 					
 					if(isset($message)) {

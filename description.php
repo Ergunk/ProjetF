@@ -32,22 +32,34 @@ if(isset($_GET['id'])) {
 			
 		$res->setFetchMode(PDO::FETCH_OBJ);	
 		
+		echo '<ul class="liste_participants">';
 		
+
+			
 		while ($idparticipants = $res->fetch()) {
+				
 			
-		
-			$id = $idparticipants->iduser;
+				$id = $idparticipants->iduser;
+				
+				$resultat = $db->query('SELECT id,pseudo FROM tblmembres WHERE id='.$id);
 			
-			$resultat = $db->query('SELECT id,pseudo FROM tblmembres WHERE id='.$id);
-		
-			$resultat->setFetchMode(PDO::FETCH_OBJ);	
-			$participants = $resultat->fetch();
-			echo '<p>'.$participants->pseudo.'</p>';
-			
-			
+				$resultat->setFetchMode(PDO::FETCH_OBJ);	
+				$participants = $resultat->fetch();
+				
+				
+				echo '<li><a href="?page=profile&id='.$participants->id.'">'.$participants->pseudo.'</a></li>';
+				
+				
 		}
+				
+		
+		echo '</ul>';
+		
+	
 		
 		echo '<button class="btn" onClick="AddParticipant('.$idEvent.','.$_SESSION['id'].')">Participer</button>';
+		
+		
 		
 	}
 	

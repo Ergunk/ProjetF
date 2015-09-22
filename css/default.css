@@ -360,7 +360,31 @@ width: 100px;
 
 	display : none;
 }
+
+
+.form_profile input{
+	border : 0px;
+	margin-left : 0px;
+	text-align:left;
 	
+}
+
+
+
+
+.form_profile input:focus{
+
+	border : 1px solid #6EC7F5;
+
+}
+
+.liste_participants li a {
+
+	text-decoration : none;
+}
+
+
+
 @media screen and (max-width: 1000px) {
 	.inner {
 		width : 100%;
