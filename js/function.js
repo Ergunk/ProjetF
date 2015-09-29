@@ -138,6 +138,9 @@ $(function(){
 	
 	$('#toggle').click(function() {
 		
+		var toggle = $('#toggle');
+		toggle.toggleClass('disable');
+		
 		var menu = $('#menu');
 		menu.toggleClass('active');
 		
@@ -150,7 +153,34 @@ $(function(){
 	
 	
 	
+	$('#submit_chat').click(function() {
+		
 
+
+		var pseudo = encodeURIComponent( $('#pseudo').val() ); // on sécurise les données
+
+		var message = encodeURIComponent( $('#message').val() );
+
+
+		if(pseudo != "" && message != ""){ // on vérifie que les variables ne sont pas vides
+
+			$.ajax({
+
+				url : "chat.php", // on donne l'URL du fichier de traitement
+				type : "POST", // la requête est de type POST
+				data : "pseudo=" + pseudo + "&message=" + message, // et on envoie nos données
+				success : function(data) {	
+					
+					
+					$('#message_area').append("<p>" + pseudo + " dit : " + message + "</p>"); // on ajoute 
+				}
+			});
+			
+		
+
+		}
+		
+	});
 
 
 		

@@ -9,6 +9,8 @@ if(isset($_GET['id'])) {
 	
 	$resultat = $res->fetch();
 	
+	echo '<div class="padding_block">';
+	
 	if(!$resultat) {
 		echo '<h1>Pas d\'événement</h1>';
 		
@@ -60,7 +62,7 @@ if(isset($_GET['id'])) {
 		echo '<button class="btn" onClick="AddParticipant('.$idEvent.','.$_SESSION['id'].')">Participer</button>';
 		
 		
-		
+		echo '</div>';
 	}
 	
 } else {

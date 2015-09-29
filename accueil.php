@@ -1,12 +1,47 @@
+<div id="chat_area">
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborumLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</o>
+<div>
+
+	<div id="message_area" class="text-area">
+		
+		<?php
+		
+				require('config.php');
+				
+                $req = $db->query('SELECT * FROM tblmessages ORDER BY id DESC LIMIT 0,10');
+
+				$req->setFetchMode(PDO::FETCH_OBJ);	
+				
+                while($donnees = $req->fetch()){
+
+                    // on affiche le message (l'id servira plus tard)
+
+                    echo "<p id=\"" . $donnees->id . "\">" . $donnees->auteur . " dit : " . $donnees->message . "</p>";
+
+                }
 
 
+                $req->closeCursor();
+		?>
+	
+	</div>
+
+	<div class="input-area">
+	
+		<div class="input-wrapper">
+				<input id="message" name="message" value="" type="text" />
+		</div>
+		<input id="pseudo" type="hidden" name="pseudo" value="<?php echo $_SESSION['user']; ?>" />
+		<input type="submit" name="submit" value="Envoyer" id="submit_chat">
+	
+	</div>
+			
+</div> 
+
+<div>
 
 
-
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborumLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</o>
-
+</div>
 
 
-
+</div>
