@@ -233,7 +233,8 @@
 						<li><a href="?page=profile&id=<?php echo $_SESSION['id']; ?>">Profile</a></li>
 					</ul>
 					
-						<form id="logout" method="POST" action=""  style="display:inline-block" >
+					
+					<form id="logout" method="POST" action=""  style="display:inline-block" >
 					
 						<input type="hidden" name="action" value="logout" />
 					
@@ -293,12 +294,12 @@
 		</div>
    
    </div>
-   
+   <!--
    <div id="wrapper_footer">
 		<div id="footer" class="inner">
 				
 			<div class="col_50">
-
+				<p>test</p>
 			</div>
 			
 			<div class="col_50">
@@ -307,6 +308,6 @@
 			
 		</div>
    </div>
-   
+   -->
 </body>
 </html>
