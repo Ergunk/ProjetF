@@ -1,0 +1,176 @@
+.input-area {
+  background: #E4EAEE none repeat scroll 0% 0%;
+
+overflow: hidden;
+/*position: absolute;*/
+left: 0px;
+/*right: 20%;*/
+display : table-row;
+border-top: 1px solid #CFDAE1;
+width : 100%;
+}
+
+
+#users-online {
+	vertical-align:top;
+	padding-left : 15px;
+
+}
+
+#message_area {
+
+  padding-top : 10px;
+}
+
+#message_area > div:nth-child(1) {
+
+	margin-top : 10px;
+}
+
+#message_area > div{
+	margin-bottom : 25px;
+	margin-left : 15px;
+	display : table;
+}
+
+#message_area > div > .user-profile {
+
+	display : table-cell;
+	max-width : 20%;
+}
+
+
+#message_area > div > p {
+
+	display : table-cell;
+	max-width : 80%;
+	vertical-align : middle;
+	padding-left : 25px;
+}
+
+
+#message_area .user-profile img {
+	
+	height: 50px;
+	width: 50px;
+	border-radius : 50%;
+	display: block;
+    
+	cursor : pointer;
+	border: 1px solid #FFF;
+	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.46);*/
+}
+
+
+#users-online ul li a {
+
+    text-decoration : none;
+	color: #00A4F6;
+}
+
+ .input-wrapper {
+	width :90%;
+ }
+
+.input-area .input-wrapper {
+    background: #FFF none repeat scroll 0% 0%;
+    border: 1px solid #CFDAE1;
+    border-radius: 5px;
+    overflow: hidden;
+    float: left;
+	margin: 6px;
+}
+
+.input-area .input-wrapper input {
+	text-align : left;
+    height: 30px;
+    line-height: 30px;
+    border: 0px none;
+    margin: 0px;
+    padding: 0px 10px;
+    outline: medium none;
+    color: #5D7185;
+	width : 100%;
+}
+
+.input-area .input-wrapper i {
+    font-size: 18px;
+    color: #A0B4C0;
+    margin-right: 10px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.input-area > input {
+	margin-top : 6px;
+	margin-right : 6px;
+    background: #6EC7F5 none repeat scroll 0% 0%;
+    border: medium none;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #FFF;
+    border-radius: 5px;
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    font-family: "Open Sans",Arial,sans-serif;
+    outline: medium none;
+}
+
+#chat_area {
+	display : table;
+	width : 100%;
+	height : 100%;
+}
+
+#chat_area > div{
+	height : 100%;
+	width : 100%;
+	display : table-cell;
+}
+
+#chat_area > div:nth-of-type(1) {
+	border-right : 1px solid #D7DAD1;
+	width : 80%;
+}
+
+
+#chat_area > div:nth-of-type(2) {
+	width : 20%;
+}
+
+
+#message_area {
+	padding-left : 15px;
+	/*position: absolute;*/
+	/*top : 35px;*/
+	left: 0px;
+	width : 100%;
+	display : table-row;
+}
+
+
+@media screen and (max-width: 940px) {
+
+	#users-online {
+		padding: 0px 15px;
+	}
+	
+	.input-wrapper {
+		width : 95%;
+	
+	}
+	
+	.input-area > input {
+		float : inherit;
+		display:block;
+		text-align : center;
+		margin-bottom : 6px;
+		margin-left : auto;
+		margin-right : auto;
+	}
+	
+
+	
+}

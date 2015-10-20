@@ -1,0 +1,28 @@
+#background {
+  position:fixed;
+  left:0; right:0;
+  top:0; bottom:0;
+  background:rgba(0, 0, 0, 0.5);
+  /* équivalent à la ligne ci-dessus :
+    background:black;
+    opacity:0.5;
+  */
+  cursor:pointer;
+}
+
+#modalWindow {
+  position:fixed;
+  background:white;
+  top:50%; /* À 50% du haut de la fenêtre. */
+  left:50%; /* À 50% de la gauche de la fenêtre. */
+  transform:translate(-50%, -50%); /* Repositionné à -50% de sa propre taille afin d'être au centre de la fenêtre. */
+}
+
+#modalWindow .exit {
+  position:fixed;
+  right:10px;
+  top:10px;
+  color:red;
+  cursor:pointer;
+  padding:0 6px;
+}
