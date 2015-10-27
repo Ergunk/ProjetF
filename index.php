@@ -1,9 +1,12 @@
 <?php
+
 	session_start();
+	
+	/* Connexion DB */
 	require('config.php');
 	global $db;
 	
-	
+	/* Tableau des pages disponibles */
 	$tblPage = array(
 		'accueil' => 'accueil.php',
 		'evenements' => 'evenements.php',
@@ -14,34 +17,47 @@
 	
 	
 	if(isset($_SESSION['id']) && isset($_SESSION['user'])) {
+		/* Une session est déjà crée */
+		
+		/* Récupère la page si elle est passé en get */
 		if(isset($_GET['page'])) {
 		
-		$pageName = $_GET['page'];
+			$pageName = $_GET['page'];
 
 		} else {
 			
-		$pageName = 'accueil';
+			/* Par defaut page d'accueil */
+			$pageName = 'accueil';
 		
 		}
 		
+		/* Regarde si la page existe dans le tableau */
 		if(!array_key_exists($pageName ,$tblPage)) {
-		
-		$pageName = 'accueil';
+			
+			/* S'il existe pas, on met accueil */
+			$pageName = 'accueil';
 		
 		} 
 		
+		/* Récupère la page dans le tableau */
 		$page = $tblPage[$pageName];
 		
 	} else {
 		
+		/* Redirige vers la page login car il n'y a pas de session */
 		header("location:login.php");
 	}
 
 	if(isset($_POST["action"])) {
 		
 		if($_POST['action'] == "logout" ) {
+			/* Met le joueur offline */
 			$req = $db->query("UPDATE tblmembres SET status='offline' WHERE id='".$_SESSION['id']."'");
+			
+			/* Détruit la session*/
 			session_destroy();
+			
+			/* redirige vers la page login */
 			header("location:login.php");
 		}
 		
@@ -51,7 +67,7 @@
 			$date = $_POST['date'];
 			$desc = $_POST['desc'];
 			
-			
+			/* Ajoute l'événement dans la base de données */
 			$req = $db->prepare('INSERT INTO tblevenements(title,date,description,createby) VALUES(:title , :date , :description, :pseudo)');
 			$req->execute(array(
 			'title' => $titre,
@@ -74,7 +90,6 @@
         <title>4MPI4I2</title>
         <meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="css/default.css">
-		<link rel="stylesheet" type="text/css" href="css/slider.css">
 		<link rel="stylesheet" type="text/css" href="css/modalWindow.css">
 		<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
 		<link rel="stylesheet" type="text/css" href="css/chat.css">
@@ -98,6 +113,7 @@
 
 	<?php
 		
+		/* Permet de changer le style quand on est sur la page définis */
 		if(isset($_GET["page"])) {
 			
 			if($_GET["page"] == "accueil") {
@@ -157,7 +173,7 @@
 			<?php
 			
 
-
+				/* Récupère le contenu de la page */
 				include($page);
 			
 			
@@ -194,18 +210,13 @@
 		?>
    
 
-		
-		<!--<div>
-			<a href="" ><span class="fa fa-users"></span></a>
-		</div>-->
+	
 		
 		<div>
 			<form id="logout" method="POST" action=""  style="display:inline-block" >
 					
 						<input type="hidden" name="action" value="logout" />
-					
-					
-						
+
 						 <button type="submit" class="login-field">
 							<span class="fa fa-sign-out"></span>
 						</button>

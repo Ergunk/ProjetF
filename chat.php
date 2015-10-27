@@ -1,14 +1,15 @@
 <?php
 	
+	/* Connexion à la base de données */
 	require('config.php');
 	
-	if(isset($_POST)){ // si on a envoyé des données avec le formulaire
+	if(isset($_POST)){ 
 
 		if(!empty($_POST['pseudo']) AND !empty($_POST['message'])){ // si les variables ne sont pas vides
 		
-			$iduser = mysql_real_escape_string($_POST['iduser']);
-			$pseudo = mysql_real_escape_string($_POST['pseudo']);
-			$message = mysql_real_escape_string($_POST['message']); // on sécurise nos données
+			$iduser = $_POST['iduser'];
+			$pseudo = $_POST['pseudo'];
+			$message = $_POST['message']; 
 			
 			$req = $db->prepare('INSERT INTO tblmessages VALUES("", :iduser , :pseudo, :message)');
 			$req->execute(array(

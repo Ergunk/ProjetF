@@ -8,67 +8,74 @@
 		
 		if($_POST['action'] == 'login' ) {
 			
-			$pseudo = $_POST['user'];
-			$pass_hache = sha1('gz'.$_POST['pass']);
-
-			$req = $db->prepare('SELECT id FROM tblmembres WHERE pseudo=:pseudo AND pass=:pass');
-
-			$req->execute(array(
-				'pseudo' => $pseudo,
-				'pass' => $pass_hache));
-
+			if($_POST['user'] != "" && $_POST['pass'] != "") {
 				
-			$resultat = $req->fetch();
+				
+				$pseudo = $_POST['user'];
+				$pass_hache = sha1('gz'.$_POST['pass']);
+				
+				/* Regarde si une occurence éxiste */
+				$req = $db->prepare('SELECT id FROM tblmembres WHERE pseudo=:pseudo AND pass=:pass');
+				$req->execute(array(
+					'pseudo' => $pseudo,
+					'pass' => $pass_hache));
+				$resultat = $req->fetch();
 
-			if (!$resultat)
-			{
-				$erreur = 'Mauvais identifiant ou mot de passe !';
+				if (!$resultat)
+				{
+					$erreur = 'Mauvais identifiant ou mot de passe !';
+				}
+				else
+				{
+					
+					/* Crée la session */
+					$_SESSION['id'] = $resultat['id'];
+					$_SESSION['user'] = $pseudo;
+					
+					/* Change le status de l'utilisateur */
+					$req = $db->query("UPDATE tblmembres SET status='online' WHERE id='".$_SESSION['id']."'");
+					header("location:index.php?page=accueil");
+				}
+			} else {
+				
+				$erreur = "Veuillez remplir les champs";
 			}
-			else
-			{
-				
-				
-				$_SESSION['id'] = $resultat['id'];
-				$_SESSION['user'] = $pseudo;
-				
-				$req = $db->query("UPDATE tblmembres SET status='online' WHERE id='".$_SESSION['id']."'");
-				
-				header("location:index.php?page=accueil");
-			}
-			
 		}
 
 		if($_POST['action'] == 'inscription' ) {
 			
+			if($_POST['user'] != "" && $_POST['pass'] != "" && $_POST['email'] != "") {
 			
-			
-			$pseudo = $_POST['user'];
-			$pass_hache = sha1('gz'.$_POST['pass']);
-			$email = $_POST['email'];
-			
+				$pseudo = $_POST['user'];
+				$pass_hache = sha1('gz'.$_POST['pass']);
+				$email = $_POST['email'];
+				
+
+				/* Regarde si une occurence existe */
+				$res = $db->query("SELECT pseudo FROM tblmembres WHERE pseudo='".$pseudo."'");
+				$res->setFetchMode(PDO::FETCH_OBJ);
 
 				
-			
-			$res = $db->query("SELECT pseudo FROM tblmembres WHERE pseudo='".$pseudo."'");
-			
-			$res->setFetchMode(PDO::FETCH_OBJ);
-			
-			
-			
-			if($test = $res->fetch() ){
-			   // Pseudo déjà utilisé
-			   $erreur = 'Ce pseudo est déjà utilisé';
-			  
-			}else{
-			   // Pseudo libre
-			  	$req = $db->prepare('INSERT INTO tblmembres(pseudo, pass, email, date_inscription) VALUES(:pseudo, :pass, :email, CURDATE())');
-				$req->execute(array(
-					'pseudo' => $pseudo,
-					'pass' => $pass_hache,
-					'email' => $email));
-				$message = "Inscription réussite";
+				if($test = $res->fetch() ){
+				   // Pseudo déjà utilisé
+				   $erreur = 'Ce pseudo est déjà utilisé';
+				  
+				}else{
+				   // Pseudo libre
+				   
+				   /* Ajoute l'utilisateur à la base de données */
+					$req = $db->prepare('INSERT INTO tblmembres(pseudo, pass, email, date_inscription) VALUES(:pseudo, :pass, :email, CURDATE())');
+					$req->execute(array(
+						'pseudo' => $pseudo,
+						'pass' => $pass_hache,
+						'email' => $email));
+					$message = "Inscription réussite";
+				}
+			} else {
+				
+				$erreur = "Veuillez remplir les champs";
+				
 			}
-			
 		}
 	}
 

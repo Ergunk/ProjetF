@@ -1,16 +1,16 @@
 <?php
 
-
+/* récupère l'id */
 if(isset($_GET['id'])) {
 	
+	/* récupère l'événement */
 	$idEvent = $_GET['id'];
-	
 	$res = $db->query('SELECT id,title,date,description,createby FROM tblevenements WHERE id='.$idEvent);
-	
 	$resultat = $res->fetch();
 	
 	echo '<div class="padding_block">';
 	
+	/* Regarde si il y a un resultat */
 	if(!$resultat) {
 		echo '<h1>Pas d\'événement</h1>';
 		
@@ -22,10 +22,11 @@ if(isset($_GET['id'])) {
 		
 		while ($event = $res->fetch()) {
 			
-		echo '<h2>'.$event->title.'</h2>';
-		echo '<p>'.$event->date.'<p>';
-		echo '<p>'.$event->description.'<p>';	
-		echo '<p> Par '.$event->createby.'<p>';			
+			/* Affiche les informations de l'événement */
+			echo '<h2>'.$event->title.'</h2>';
+			echo '<p>'.$event->date.'<p>';
+			echo '<p>'.$event->description.'<p>';	
+			echo '<p> Par '.$event->createby.'<p>';			
 		}
 		
 		echo '<h2>Participant</h2>';
@@ -33,33 +34,33 @@ if(isset($_GET['id'])) {
 		$res = $db->query('SELECT id,idevent,iduser FROM tblparticipants WHERE idevent='.$idEvent);
 			
 		if($res != "") {
-		$res->setFetchMode(PDO::FETCH_OBJ);	
+			
+			/* Affiche la liste des participants */
+			
+			$res->setFetchMode(PDO::FETCH_OBJ);	
+			echo '<ul class="liste_participants">';
+			while ($idparticipants = $res->fetch()) {
+					
+				
+					$id = $idparticipants->iduser;
+					
+					$resultat = $db->query('SELECT id,pseudo FROM tblmembres WHERE id='.$id);
+				
+					$resultat->setFetchMode(PDO::FETCH_OBJ);	
+					$participants = $resultat->fetch();
+					
+					
+					echo '<li><a href="?page=profile&id='.$participants->id.'">'.$participants->pseudo.'</a></li>';
+					
+					
+			}
+					
+			
+			echo '</ul>';
 		
-		echo '<ul class="liste_participants">';
-		
-
-			
-		while ($idparticipants = $res->fetch()) {
-				
-			
-				$id = $idparticipants->iduser;
-				
-				$resultat = $db->query('SELECT id,pseudo FROM tblmembres WHERE id='.$id);
-			
-				$resultat->setFetchMode(PDO::FETCH_OBJ);	
-				$participants = $resultat->fetch();
-				
-				
-				echo '<li><a href="?page=profile&id='.$participants->id.'">'.$participants->pseudo.'</a></li>';
-				
-				
 		}
-				
 		
-		echo '</ul>';
-		
-		}
-		
+		/* Bouton qui permet d'ajouter un participant */
 		echo '<button class="btn" onClick="AddParticipant('.$idEvent.','.$_SESSION['id'].')">Participer</button>';
 		
 		
